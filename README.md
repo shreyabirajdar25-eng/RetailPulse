@@ -126,8 +126,35 @@ The model predicts future monthly revenue based on historical sales data.
 ---
 
 ## Project Structure
+## Project Structure
 
----
+```text
+RetailPulse/
+│
+├── data/
+│   └── Online Retail.xlsx
+│
+├── models/
+│   └── demand_forecasting_model.pkl
+│
+├── EDA.ipynb
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── graph1.png
+├── graph2.png
+├── graph3.png
+├── graph4.png
+├── graph5.png
+├── graph6.png
+├── graph7.png
+├── graph8.png
+├── graph9.png
+├── graph10.png
+│
+└── .gitignore
+```
 
 ## Future Enhancements
 
