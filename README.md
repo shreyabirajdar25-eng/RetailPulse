@@ -126,7 +126,6 @@ The model predicts future monthly revenue based on historical sales data.
 ---
 
 ## Project Structure
-## Project Structure
 
 ```text
 RetailPulse/
