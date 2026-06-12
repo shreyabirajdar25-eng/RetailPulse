@@ -11,168 +11,157 @@ st.set_page_config(
 # ---------------- LOAD DATA ----------------
 df = pd.read_excel("data/Online Retail.xlsx")
 
-# ---------------- HEADER ----------------
-st.title("📊 RetailPulse Dashboard")
-st.subheader("AI Powered Retail Analytics & Demand Forecasting")
+# ---------------- SIDEBAR ----------------
+st.sidebar.title("📊 RetailPulse")
 
-# ---------------- KPIs ----------------
-col1, col2, col3 = st.columns(3)
+page = st.sidebar.radio(
+    "Navigation",
+    [
+        "Overview",
+        "EDA",
+        "Forecasting",
+        "Segmentation",
+        "Recommendations",
+        "Churn"
+    ]
+)
 
-with col1:
-    st.metric("Total Transactions", len(df))
+# ---------------- OVERVIEW ----------------
+if page == "Overview":
 
-with col2:
-    st.metric("Total Products", df["Description"].nunique())
+    st.title("📊 RetailPulse Dashboard")
+    st.subheader("AI Powered Retail Analytics & Demand Forecasting")
 
-with col3:
-    st.metric("Total Customers", df["CustomerID"].nunique())
+    col1, col2, col3 = st.columns(3)
 
-st.divider()
+    with col1:
+        st.metric("Total Transactions", len(df))
 
-# ---------------- DATASET PREVIEW ----------------
-st.header("📂 Dataset Preview")
-st.dataframe(df.head())
+    with col2:
+        st.metric("Total Products", df["Description"].nunique())
 
-st.divider()
+    with col3:
+        st.metric("Total Customers", df["CustomerID"].nunique())
 
-# ---------------- PROJECT MODULES ----------------
-st.header("🚀 Completed Project Modules")
+    st.divider()
 
-st.success("✔ Sales Analysis")
-st.success("✔ Demand Forecasting")
-st.success("✔ Customer Segmentation")
-st.success("✔ Product Recommendation System")
-st.success("✔ Customer Churn Prediction")
+    st.header("📂 Dataset Preview")
+    st.dataframe(df.head())
 
-st.divider()
+    st.divider()
 
-# ---------------- EDA VISUALIZATIONS ----------------
-st.header("📈 Exploratory Data Analysis")
+    st.header("🚀 Completed Modules")
 
-try:
-    st.image("graph1.png", caption="Sales Trend Analysis")
-except:
-    st.warning("graph1.png not found")
+    st.success("✔ Sales Analysis")
+    st.success("✔ Demand Forecasting")
+    st.success("✔ Customer Segmentation")
+    st.success("✔ Product Recommendation System")
+    st.success("✔ Customer Churn Prediction")
 
-try:
-    st.image("graph 2.png", caption="Country-wise Quantity Sold")
-except:
-    st.warning("graph 2.png not found")
+# ---------------- EDA ----------------
+elif page == "EDA":
 
-try:
-    st.image("graph 3.png", caption="Top Products")
-except:
-    st.warning("graph 3.png not found")
+    st.title("📈 Exploratory Data Analysis")
 
-try:
-    st.image("graph 4.png", caption="Revenue Distribution")
-except:
-    st.warning("graph 4.png not found")
+    col1, col2 = st.columns(2)
 
-try:
-    st.image("graph 5.png", caption="Sales Distribution")
-except:
-    st.warning("graph 5.png not found")
+    with col1:
+        st.image("screenshots/graph1.png", caption="Sales Trend Analysis", use_container_width=True)
 
-try:
-    st.image("graph 6.png", caption="Monthly Revenue")
-except:
-    st.warning("graph 6.png not found")
+    with col2:
+        st.image("screenshots/graph 2.png", caption="Country-wise Quantity Sold", use_container_width=True)
 
-try:
-    st.image("graph 7.png", caption="Monthly Orders")
-except:
-    st.warning("graph 7.png not found")
+    col1, col2 = st.columns(2)
 
-st.divider()
+    with col1:
+        st.image("screenshots/graph 3.png", caption="Top Products", use_container_width=True)
 
-# ---------------- DEMAND FORECASTING ----------------
-st.header("🔮 Demand Forecasting")
+    with col2:
+        st.image("screenshots/graph 4.png", caption="Revenue Distribution", use_container_width=True)
 
-try:
-    st.image("graph 8.png", caption="Actual vs Predicted Revenue")
-except:
-    st.warning("graph 8.png not found")
+    col1, col2 = st.columns(2)
 
-try:
-    st.image("graph 9.png", caption="Future Revenue Forecast")
-except:
-    st.warning("graph 9.png not found")
+    with col1:
+        st.image("screenshots/graph 5.png", caption="Sales Distribution", use_container_width=True)
 
-try:
-    st.image("graph 10.png", caption="Forecast Analysis")
-except:
-    st.warning("graph 10.png not found")
+    with col2:
+        st.image("screenshots/graph 6.png", caption="Monthly Revenue", use_container_width=True)
 
-st.divider()
+    st.image("screenshots/graph 7.png", caption="Monthly Orders", use_container_width=True)
 
-# ---------------- CUSTOMER SEGMENTATION ----------------
-st.header("👥 Customer Segmentation")
+# ---------------- FORECASTING ----------------
+elif page == "Forecasting":
 
-try:
-    st.image("graph 11.png", caption="Customer Segments")
-except:
-    st.warning("graph 11.png not found")
+    st.title("🔮 Demand Forecasting")
 
-try:
-    st.image("graph 12.png", caption="Cluster Distribution")
-except:
-    st.warning("graph 12.png not found")
+    col1, col2 = st.columns(2)
 
-try:
-    st.image("graph 13.png", caption="RFM Analysis")
-except:
-    st.warning("graph 13.png not found")
+    with col1:
+        st.image("screenshots/graph 8.png", caption="Actual vs Predicted Revenue", use_container_width=True)
 
-try:
-    st.image("graph 14.png", caption="Customer Categories")
-except:
-    st.warning("graph 14.png not found")
+    with col2:
+        st.image("screenshots/graph 9.png", caption="Future Revenue Forecast", use_container_width=True)
 
-st.divider()
+    st.image("screenshots/graph 10.png", caption="Forecast Analysis", use_container_width=True)
 
-# ---------------- PRODUCT RECOMMENDATION ----------------
-st.header("🛒 Product Recommendation System")
+# ---------------- SEGMENTATION ----------------
+elif page == "Segmentation":
 
-try:
-    st.image("graph 15.png", caption="Product Similarity")
-except:
-    st.warning("graph 15.png not found")
+    st.title("👥 Customer Segmentation")
 
-try:
-    st.image("graph 16.png", caption="Recommended Products")
-except:
-    st.warning("graph 16.png not found")
+    col1, col2 = st.columns(2)
 
-st.divider()
+    with col1:
+        st.image("screenshots/graph 11.png", caption="Customer Segments", use_container_width=True)
 
-# ---------------- CUSTOMER CHURN ----------------
-st.header("⚠ Customer Churn Prediction")
+    with col2:
+        st.image("screenshots/graph 12.png", caption="Cluster Distribution", use_container_width=True)
 
-try:
-    st.image("graph 17.png", caption="Customer Churn Overview")
-except:
-    st.warning("graph 17.png not found")
+    col1, col2 = st.columns(2)
 
-try:
-    st.image("graph 18.png", caption="Churn Analysis")
-except:
-    st.warning("graph 18.png not found")
+    with col1:
+        st.image("screenshots/graph 13.png", caption="RFM Analysis", use_container_width=True)
 
-try:
-    st.image("graph 19.png", caption="High Risk Customers")
-except:
-    st.warning("graph 19.png not found")
+    with col2:
+        st.image("screenshots/graph 14.png", caption="Customer Categories", use_container_width=True)
 
-st.divider()
+# ---------------- RECOMMENDATIONS ----------------
+elif page == "Recommendations":
+
+    st.title("🛒 Product Recommendation System")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image("screenshots/graph 15.png", caption="Product Similarity", use_container_width=True)
+
+    with col2:
+        st.image("screenshots/graph 16.png", caption="Recommended Products", use_container_width=True)
+
+# ---------------- CHURN ----------------
+elif page == "Churn":
+
+    st.title("⚠ Customer Churn Prediction")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image("screenshots/graph 17.png", caption="Customer Churn Overview", use_container_width=True)
+
+    with col2:
+        st.image("screenshots/graph 18.png", caption="Churn Analysis", use_container_width=True)
+
+    st.image("screenshots/graph 19.png", caption="High Risk Customers", use_container_width=True)
 
 # ---------------- FOOTER ----------------
-st.markdown("---")
+st.divider()
+
 st.markdown(
     """
     ### RetailPulse
-    AI-Powered Retail Analytics & Demand Forecasting Platform
-    
+
+    AI Powered Retail Analytics & Demand Forecasting Platform
+
     Features:
     - Sales Analysis
     - Demand Forecasting
